@@ -3,3 +3,19 @@ plugins {
 }
 
 rootProject.name = 'gradle-build-scan-quickstart'
+gradleEnterprise {
+    server = "http://localhost:8180"
+    allowUntrustedServer = true
+    buildScan {
+        publishAlways()
+    }
+}
+buildCache {
+    local {
+        enabled = false
+    }
+    remote(gradleEnterprise.buildCache) {
+        enabled = false
+    }
+}
+
